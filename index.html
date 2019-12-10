@@ -1,57 +1,171 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
+<!doctype html>
+<html>
+	<head>
+		<title>Segment Sandbox & Project Space</title>
 
-    <script>
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-      analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
-      analytics.page();
-      }}();
-    </script>
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-</head> 
-<body> 
-<h1>What is your favorite place to travel?</h1> 
-<p>I am building a directory of the sweetest travel destinations.</p>  
-<form name="travel" onsubmit="identify(event)">
-     What is your favorite travel destination?
-    <input name="destination" required="" size="81" type="text"/> 
-    <br><br><br> 
-    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
-    <br><br> 
-    <textarea cols="81" name="details" required="" rows="10">
-    </textarea> 
-    <br><br> 
-    Name: <input name="fullname" required="" size="75" type="text"/> 
-    <br><br> 
-    Email: <input name="email" required="" size="75" type="email"/> 
-    <br><br>
-    <input name="submit" type="submit" value="submit"/>
-</form> 
-    
-    <script type="text/javascript">
-      function identify(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details
-        };
-        analytics.identify('1234', {
-            email: email, 
-            name: fullname
-        });
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-        });
-      }
-</script>
-</body> 
+		<!-- UIKit 2-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script>
+		<!-- UIkit 3-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+
+		<link rel="stylesheet" href="static/style.css">
+
+
+		<!-- start Segment -->
+		<script type="text/javascript">
+			!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+			analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
+			analytics.page();
+			}}();
+		</script>
+		<!-- end Segment -->
+		<script
+		  data-workspace-id="eVgZgEcWSF"
+		  data-source-id="i7kaHqOAfh"
+		  src="https://unpkg.com/@segment/tracktor"
+		> </script> <!-- tracktor script -->
+
+	</head>
+
+	<body>
+		<section class="main">
+			<div class="header uk-margin-top uk-text-bold">
+				<img src="static/segment.png" alt="Segment Logo" /><br>
+				Sandbox & Project Space
+			</div>
+
+			<div class="grid-container uk-margin-medium-top">
+				<div class="uk-panel uk-panel-box grid-item">
+						<h3 class="uk-panel-title"><a href="https://github.com/dddiggory/segment-react-native-example">Countable Example</a></h3>
+						<div class="uk-text-small card-body">
+							<img src="static/countable.gif" width="25%" style="padding: 0 15px; float: left;"/>
+							Segment onboarding project -- React Native app replicating <a href="https://countable.us">Countable.us</a> with realtime Segment tracking implemented.<br><br>
+							Events are tracked in realtime using leoilab's <a href="https://github.com/leoilab/react-native-analytics-segment-io">React Native Wrapper</a> for Segment.
+						</div>
+						<div class="uk-text-meta card-footer">
+							React Native
+						</div>
+				</div>
+				<div class="uk-panel uk-panel-box grid-item ">
+						<h3 class="uk-panel-title"><a href="https://github.com/dddiggory/segment-event-generator">Segment Event Generator</a></h3>
+						<div class="uk-text-small card-body">
+							<img src="static/event-generator.gif" width="60%" style="padding: 0 15px; float: left;"/>
+							Quick attempt at a Segment event generator. Sends events to a specified write_key with randomization of: <strong>timestamps</strong> (in the last N days), <strong>event & property values</strong> (options to use a JSON file or inline values), <strong>names/emails/ages</strong> from uinames.com, and <strong>event frequencies</strong> per user.<br><br>
+							This hasn't currently undergone any optimization and, at this stage, only creates about 25 users per minute. The version on the repo works with a 'bills.json' file reflecting a hypothetical <a href="https://countable.us">Countable</a> tracking plan.
+						</div>
+						<div class="uk-text-meta card-footer">
+							Python
+						</div>
+				</div>
+				<div class="uk-panel uk-panel-box grid-item">
+						<h3 class="uk-panel-title"><a href="http://mpcohorts.com">MPCohorts.com</a></h3>
+						<div class="uk-text-small card-body">
+							(Legacy) self-service tool for creating custom cohorts in Mixpanel. Use a Mixpanel event-triggered notification to send your audiences to a webhook.
+							<br><br>
+							I'm leaving this online for posterity, but I'd strongly recommend <a href="https://segment.com/docs/personas/">Segment's Personas</a> to handle this (and many more use cases) today.
+						</div>
+						<div class="uk-text-meta card-footer">
+							Flask, Webhooks, Mixpanel Profile API
+						</div>
+				</div>
+				<!-- <div class="grid-item uk-panel uk-panel-box">
+						<h3 class="uk-panel-title"><a href="/countable.html">Coming soon.</a></h3>
+						Body text here.
+				</div> -->
+				
+			</div>
+			
+
+			<div class="uk-margin-medium-top">
+				<a class="uk-button uk-button-primary" href="https://segment.com">
+				Go to Segment.com
+				</a>
+				<button class="uk-button uk-button-danger" id="event-sender" onclick="UIkit.notification({
+						message: 'Event sent to Segment!', 
+						status: 'success',
+						pos: 'top-right',
+						timeout: 1000})">
+					Send an event
+				</button>
+				
+				<button class="uk-button uk-button-default" id="id-violation">
+					Generate violations
+				</button>
+
+				<button class="uk-button uk-button-secondary" id="id-reset">
+					New anon ID
+				</button>
+
+
+				<form class='uk-form-width-small main'>
+					<label class="uk-form-label">Select identity:</label>
+					<select class="uk-select" id="id-select" onchange="UIkit.notification({
+						message: 'Changed identity to '+$('#id-select')[0].value, 
+						status: 'primary',
+						pos: 'top-right',
+						timeout: 1000})">
+						<option>Diggory</option>
+						<option>Ricky</option>
+						<option>Prakash</option>
+						<option>Sahil</option>
+						<option>Jaimal</option>
+						<option>Han</option>
+					</select>
+				</form>
+			</div>
+		
+		</section>
+
+		<div id="footer" style="position: absolute; bottom: 15; margin: auto; width: 100%; text-align: center;">
+			Diggory Rycroft | diggory@segment.com
+		</div>
+
+		<script type="text/javascript">
+			$( document ).ready(function(){
+				analytics.debug();
+
+				$("#event-sender").click(function(){
+					analytics.track("Tap Button", {"Button ID": $(this)[0].id, "numbers_only": 12345});
+				})
+
+				$("#id-select").change(function(){
+					var idString = $(this)[0].value;
+					analytics.identify(idString);
+					console.log("Identified as "+idString+".");
+				})
+				
+				$("#id-reset").click(function(){
+					analytics.reset();
+					UIkit.notification({
+						message: 'Identity is reset; New anonID is '+analytics.user().anonymousId(), 
+						status: 'primary',
+						pos: 'top-right',
+						timeout: 1000});
+				})
+				
+				$("#id-violation").click(function(){
+					analytics.track("Bad Event", {"Button ID": $(this)[0].id});
+					analytics.track("Tap Button", {"Button ID": $(this)[0].id, "numbers_only": "abcde"});
+					analytics.track("Tap Button");
+				})
+
+
+			})
+			
+
+		</script>
+
+	</body>
+
+
 </html>
