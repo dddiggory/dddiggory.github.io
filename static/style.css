@@ -1,0 +1,56 @@
+.pagetitle {
+    color: #800080;
+}
+.main {
+	text-align: center;
+	margin: auto;
+	padding: 20px;
+}
+.nav {
+	padding-top: 60px;
+}
+
+.grid-container {
+	display: inline-grid;
+	grid-template-columns: 550px;
+	/*width: 75%;*/
+	/*grid-gap: 10px;*/
+}
+
+.grid-item {
+	align-text: left;
+	vertical-align: middle;
+	/*width: 200%;*/
+	margin:auto;
+}
+
+
+
+.box-item {
+}
+
+.uk-panel-box {
+	margin: 10px;
+}
+
+.item-grid {
+	padding-top: 25px;
+	width: 100%;
+	margin: auto;
+	text-align: left;
+}
+
+.card-body {
+	text-align: left;
+	padding: 1px;
+}
+
+.card-footer {
+	text-align: right;
+	padding-top: 10px;
+}
+
+.uk-button {
+	width: 210px;
+	font-size: 13px;
+}
