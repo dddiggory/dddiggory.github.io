@@ -41,7 +41,7 @@
 
 			let flattenedContextObj = flattenObject(payload.obj.context)
 
-			if (payload.obj.type == "identify") {
+			if ("traits" in payload.obj) {
 				payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
 				payload.obj.traits["Middleware Traits"] = true
 			} else if ("properties" in payload.obj) {
