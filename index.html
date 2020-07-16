@@ -30,7 +30,7 @@
 // 			next(payload)
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
-		  var destMiddlewareTest = function({ payload, integration, next }) {
+		  var destMiddlewareTest = function({ payload, integrations, next }) {
 			const flattenObject = (obj, prefix = '') =>
 			  Object.keys(obj).reduce((acc, k) => {
 			    const pre = prefix.length ? prefix + '_' : '';
@@ -40,7 +40,8 @@
 			  }, {});
 			
 			let flattenedContextObj = flattenObject(payload.obj.context)
-			if (payload.obj.type == "track") {Object.assign(payload.obj.properties, flattenedContextObj)}
+// 			if (payload.obj.type == "track") {Object.assign(payload.obj.properties, flattenedContextObj)}
+			if (payload.obj.type == "track") {payload.obj.properties = flattenedContextObj}
 			if (payload.obj.type == "identify") {Object.assign(payload.obj.traits, flattenedContextObj)}
 			next(payload);
 		  }
