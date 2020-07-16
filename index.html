@@ -31,28 +31,26 @@
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
 		var addContext = function({ payload, integration, next }) {
-			const flattenObject = (obj, prefix = '') =>
-			  Object.keys(obj).reduce((acc, k) => {
-			    const pre = prefix.length ? prefix + '_' : '';
-			    if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k));
-			    else acc[pre + k] = obj[k];
-			    return acc;
-			  }, {});
-
-			let flattenedContextObj = flattenObject(payload.obj.context)
+			let contextObj = payload.obj.context
+			let newContext = {}
+			newContext["campaign"] = contextObj.campaign || null
+			newContext["libraryName"] = contextObj.library.name || null
+			newContext["libraryVersion"] = contextObj.library.version || null
+			newContext["locale"] = contextObj.locale || null
+			newContext["pagePath"] = contextObj.page.path || null
+			newContext["pageReferrer"] = contextObj.page.referrer || null
+			newContext["pageSearch"] = contextObj.page.search || null
+			newContext["pageTitle"] = contextObj.page.title || null
+			newContext["pageUrl"] = contextObj.page.url || null
+			newContext["userAgent"] = contextObj.userAgent || null
+			
 
 			if ("traits" in payload.obj) {
-				payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
 				payload.obj.traits["Middleware Traits"] = true
-				if ("ip" in payload.obj.context) {payload.obj.traits["ip"] = payload.obj.context.ip}
-				if ("locale" in payload.obj.context) {payload.obj.traits["locale"] = payload.obj.context.locale}
-				if ("userAgent" in payload.obj.context) {payload.obj.traits["userAgent"] = payload.obj.context.userAgent}
+				payload.obj.traits = Object.assign(payload.obj.traits, newContext)
 			} else if ("properties" in payload.obj) {
-				payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj);
 				payload.obj.properties["Middleware Props"] = true
-				if ("ip" in payload.obj.context) {payload.obj.properties["ip"] = payload.obj.context.ip}
-				if ("locale" in payload.obj.context) {payload.obj.properties["locale"] = payload.obj.context.locale}
-				if ("userAgent" in payload.obj.context) {payload.obj.properties["userAgent"] = payload.obj.context.userAgent}
+				payload.obj.properties = Object.assign(payload.obj.properties, newContext)
 			}
 			next(payload);
 		  }
