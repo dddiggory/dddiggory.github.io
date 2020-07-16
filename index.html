@@ -44,9 +44,15 @@
 			if ("traits" in payload.obj) {
 				payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
 				payload.obj.traits["Middleware Traits"] = true
+				if ("ip" in payload.obj.context) {payload.obj.traits["ip"] = payload.obj.context.ip}
+				if ("locale" in payload.obj.context) {payload.obj.traits["locale"] = payload.obj.context.locale}
+				if ("userAgent" in payload.obj.context) {payload.obj.traits["userAgent"] = payload.obj.context.userAgent}
 			} else if ("properties" in payload.obj) {
 				payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj);
 				payload.obj.properties["Middleware Props"] = true
+				if ("ip" in payload.obj.context) {payload.obj.properties["ip"] = payload.obj.context.ip}
+				if ("locale" in payload.obj.context) {payload.obj.properties["locale"] = payload.obj.context.locale}
+				if ("userAgent" in payload.obj.context) {payload.obj.properties["userAgent"] = payload.obj.context.userAgent
 			}
 			next(payload);
 		  }
