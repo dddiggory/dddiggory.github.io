@@ -31,18 +31,19 @@
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
 		  var destMiddlewareTest = function({ payload, integration, next }) {
-		  	const flattenObject = (obj, prefix = '') =>
-			  Object.keys(obj).reduce((acc, k) => {
-			    const pre = prefix.length ? prefix + '.' : '';
-			    if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k));
-			    else acc[pre + k] = obj[k];
-			    return acc;
-			  }, {});
+		  	payload.object.properties["Added Property"] = "Test"
+// 			const flattenObject = (obj, prefix = '') =>
+// 			  Object.keys(obj).reduce((acc, k) => {
+// 			    const pre = prefix.length ? prefix + '.' : '';
+// 			    if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k));
+// 			    else acc[pre + k] = obj[k];
+// 			    return acc;
+// 			  }, {});
 			
-			let flattenedContextObj = flattenObject(payload.obj.context)
-			payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
-			payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj)
-			console.log(flattenedContextObj);
+// 			let flattenedContextObj = flattenObject(payload.obj.context)
+// 			payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
+// 			payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj)
+// 			console.log(flattenedContextObj);
 			next(payload);
 		  }
 		  analytics.addDestinationMiddleware("klaviyo", [destMiddlewareTest]);
