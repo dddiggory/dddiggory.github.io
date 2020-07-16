@@ -30,6 +30,23 @@
 // 			next(payload)
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
+		  var destMiddlewareTest = function({ payload, integration, next }) {
+		  	const flattenObject = (obj, prefix = '') =>
+			  Object.keys(obj).reduce((acc, k) => {
+			    const pre = prefix.length ? prefix + '.' : '';
+			    if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k));
+			    else acc[pre + k] = obj[k];
+			    return acc;
+			  }, {});
+			
+			let flattenedContextObj = flattenObject(payload.obj.context)
+			Object.assign(payload.obj.traits, flattenedContextObj)
+			Object.assign(payload.obj.properties, flattenedContextObj)
+			console.log("success");
+			next(payload);
+		  }
+		  analytics.addDestinationMiddleware("klaviyo", [destMiddlewareTest]);
+		  
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
 		  }}();
