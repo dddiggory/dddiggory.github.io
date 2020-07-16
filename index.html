@@ -43,7 +43,11 @@
 
 			if (payload.obj.type == "identify") {
 				payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
-			} else if ("properties" in payload.obj) { payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj) }
+				payload.obj.traits["Middleware Traits"] = true
+			} else if ("properties" in payload.obj) {
+				payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj);
+				payload.obj.properties["Middleware Props"] = true
+			}
 			next(payload);
 		  }
 // 		  analytics.addSourceMiddleware(addContext);
