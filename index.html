@@ -31,22 +31,20 @@
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
 		  var destMiddlewareTest = function({ payload, integration, next }) {
-			payload.object.traits["Added Trait"] = "Test";
-// 			const flattenObject = (obj, prefix = '') =>
-// 			  Object.keys(obj).reduce((acc, k) => {
-// 			    const pre = prefix.length ? prefix + '.' : '';
-// 			    if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k));
-// 			    else acc[pre + k] = obj[k];
-// 			    return acc;
-// 			  }, {});
+			const flattenObject = (obj, prefix = '') =>
+			  Object.keys(obj).reduce((acc, k) => {
+			    const pre = prefix.length ? prefix + '.' : '';
+			    if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k));
+			    else acc[pre + k] = obj[k];
+			    return acc;
+			  }, {});
 			
-// 			let flattenedContextObj = flattenObject(payload.obj.context)
-// 			payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
-// 			payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj)
-// 			console.log(flattenedContextObj);
+			let flattenedContextObj = flattenObject(payload.obj.context)
+			if (payload.obj.type == "track") {Object.assign(payload.obj.properties, flattenedContextObj)}
+			if (payload.obj.type == "identify") {Object.assign(payload.obj.traits, flattenedContextObj)}
 			next(payload);
 		  }
-		  analytics.addDestinationMiddleware("Klaviyo", [destMiddlewareTest]);
+		  analytics.addSourceMiddleware(destMiddlewareTest);
 		  
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
