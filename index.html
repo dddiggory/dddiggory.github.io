@@ -30,7 +30,7 @@
 // 			next(payload)
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
-		  var destMiddlewareTest = function({ payload, integrations, next }) {
+		var addContext = function({ payload, integration, next }) {
 			const flattenObject = (obj, prefix = '') =>
 			  Object.keys(obj).reduce((acc, k) => {
 			    const pre = prefix.length ? prefix + '_' : '';
@@ -38,13 +38,13 @@
 			    else acc[pre + k] = obj[k];
 			    return acc;
 			  }, {});
-			
+
 			let flattenedContextObj = flattenObject(payload.obj.context)
 			payload.obj.properties = flattenedContextObj
 			next(payload);
 		  }
-		  analytics.addSourceMiddleware(destMiddlewareTest);
-		  
+		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
+		  analytics.addDestinationMiddleware("Mixpanel", [addContext]);
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
 		  }}();
