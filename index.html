@@ -31,7 +31,8 @@
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
 		var addContext = function({ payload, next, integrations }) {
-			let contextObj = payload.obj.context
+// 			let contextObj = payload.obj.context
+			let contextObj = {"campaign": "test", "page": {"path":"test.com"}}
 			let newContext = {}
 			newContext["campaign"] = contextObj.campaign || null
 			newContext["libraryName"] = contextObj.library.name || null
