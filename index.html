@@ -31,19 +31,18 @@
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
 		var addContext = function({ payload, next, integrations }) {
-// 			let contextObj = payload.obj.context
-			let contextObj = {"ip":"68.173.59.125","library":{"name":"analytics.js","version":"3.13.5"},"locale":"en-US","page":{"path":"/","referrer":"","search":"","title":"SegmentSandbox&ProjectSpace6.0","url":"https://dddiggory.github.io/"},"protocols":{"sourceId":"LWtMixG6L4"},"userAgent":"Mozilla/5.0(Macintosh;IntelMacOSX10_15_4)AppleWebKit/537.36(KHTML,likeGecko)Chrome/83.0.4103.116Safari/537.36"}
+			let contextObj = payload.obj.context
 			let newContext = {}
 			newContext["campaign"] = contextObj.campaign || null
 			newContext["libraryName"] = contextObj.library.name || null
 			newContext["libraryVersion"] = contextObj.library.version || null
-			newContext["locale"] = contextObj.locale || null
+			newContext["locale"] = navigator.language || null
 			newContext["pagePath"] = contextObj.page.path || null
 			newContext["pageReferrer"] = contextObj.page.referrer || null
 			newContext["pageSearch"] = contextObj.page.search || null
 			newContext["pageTitle"] = contextObj.page.title || null
 			newContext["pageUrl"] = contextObj.page.url || null
-			newContext["userAgent"] = contextObj.userAgent || null
+			newContext["userAgent"] = navigator.userAgent || null
 			
 
 			if ("traits" in payload.obj) {
