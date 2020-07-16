@@ -40,9 +40,7 @@
 			  }, {});
 			
 			let flattenedContextObj = flattenObject(payload.obj.context)
-// 			if (payload.obj.type == "track") {Object.assign(payload.obj.properties, flattenedContextObj)}
-			if (payload.obj.type == "track") {payload.obj.properties = flattenedContextObj}
-			if (payload.obj.type == "identify") {Object.assign(payload.obj.traits, flattenedContextObj)}
+			payload.obj.properties = flattenedContextObj
 			next(payload);
 		  }
 		  analytics.addSourceMiddleware(destMiddlewareTest);
