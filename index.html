@@ -31,8 +31,7 @@
 // 		  };
 // 		  analytics.addSourceMiddleware(sourceMiddlewareTest);
 		  var destMiddlewareTest = function({ payload, integration, next }) {
-// 		  	payload.object.properties["Added Property"] = "Test"
-			payload.object.traits["Added Trait"] = "Test"
+			payload.object.traits["Added Trait"] = "Test";
 // 			const flattenObject = (obj, prefix = '') =>
 // 			  Object.keys(obj).reduce((acc, k) => {
 // 			    const pre = prefix.length ? prefix + '.' : '';
@@ -47,7 +46,7 @@
 // 			console.log(flattenedContextObj);
 			next(payload);
 		  }
-		  analytics.addDestinationMiddleware("klaviyo", [destMiddlewareTest]);
+		  analytics.addDestinationMiddleware("Klaviyo", [destMiddlewareTest]);
 		  
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
