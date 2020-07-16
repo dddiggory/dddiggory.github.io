@@ -40,9 +40,9 @@
 			  }, {});
 			
 			let flattenedContextObj = flattenObject(payload.obj.context)
-			Object.assign(payload.obj.traits, flattenedContextObj)
-			Object.assign(payload.obj.properties, flattenedContextObj)
-			console.log("success");
+			payload.obj.traits = Object.assign(payload.obj.traits, flattenedContextObj)
+			payload.obj.properties = Object.assign(payload.obj.properties, flattenedContextObj)
+			console.log(flattenedContextObj);
 			next(payload);
 		  }
 		  analytics.addDestinationMiddleware("klaviyo", [destMiddlewareTest]);
