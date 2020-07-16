@@ -52,7 +52,7 @@
 				payload.obj.properties["Middleware Props"] = true
 				if ("ip" in payload.obj.context) {payload.obj.properties["ip"] = payload.obj.context.ip}
 				if ("locale" in payload.obj.context) {payload.obj.properties["locale"] = payload.obj.context.locale}
-				if ("userAgent" in payload.obj.context) {payload.obj.properties["userAgent"] = payload.obj.context.userAgent
+				if ("userAgent" in payload.obj.context) {payload.obj.properties["userAgent"] = payload.obj.context.userAgent}
 			}
 			next(payload);
 		  }
