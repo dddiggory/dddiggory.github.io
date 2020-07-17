@@ -25,6 +25,7 @@
 			next(payload);
 		}
 		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
+		  analytics.addDestinationMiddleware("Mixpanel", [addContext]);
 		  analytics.addDestinationMiddleware("Webhooks", [addContext]);
 			
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
