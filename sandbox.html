@@ -20,6 +20,11 @@
 			newContext["pageUrl"] = contextObj.page.url || null
 			newContext["userAgent"] = navigator.userAgent || null
 			
+			console.log("New Context");
+			console.log(newContext);
+			
+// 			newContext = {"TEST": "OK");
+			if (! payload.obj.properties) {payload.obj.properties = {}};
 			payload.obj.properties = Object.assign(payload.obj.properties, newContext);
 			
 			next(payload);
