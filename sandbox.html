@@ -19,6 +19,8 @@
 			newContext["pageTitle"] = contextObj.page.title || null
 			newContext["pageUrl"] = contextObj.page.url || null
 			newContext["userAgent"] = navigator.userAgent || null
+			
+			next(payload);
 		}
 		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
 		  analytics.addDestinationMiddleware("Webhooks", [addContext]);
