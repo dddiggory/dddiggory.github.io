@@ -4,35 +4,26 @@
 		<title>Segment Blank Canvas 1.1</title>
 		<script>
 		  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var t=analytics.methods[e];analytics[t]=analytics.factory(t)}analytics.load=function(e,t){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=t};analytics.SNIPPET_VERSION="4.1.0";
+		  
+		  var addContext = function({payload, next, integration}) {
+		    let contextObj = payload.obj.context;
+		    let newContext = {}
 
-// 		var addContext = function({ payload, next, integration }) {
-// 			let contextObj = payload.obj.context
-// // 			let contextObj = {"campaign": "test", "page": {"path":"test.com"}}
-// 			let newContext = {}
-// 			newContext["campaign"] = contextObj.campaign || null
-// 			newContext["libraryName"] = contextObj.library.name || null
-// 			newContext["libraryVersion"] = contextObj.library.version || null
-// 			newContext["locale"] = navigator.language || null
-// 			newContext["pagePath"] = contextObj.page.path || null
-// 			newContext["pageReferrer"] = contextObj.page.referrer || null
-// 			newContext["pageSearch"] = contextObj.page.search || null
-// 			newContext["pageTitle"] = contextObj.page.title || null
-// 			newContext["pageUrl"] = contextObj.page.url || null
-// 			newContext["userAgent"] = navigator.userAgent || null
-			
-// 			console.log("New Context");
-// 			console.log(newContext);
-			
-// 			newContext = {"TEST": "OK"};
-// 			if (! payload.obj.properties) {payload.obj.properties = {}};
-// 			payload.obj.properties = Object.assign(payload.obj.properties, newContext);
-			
-// 			next(payload);
-// 		}
-// 		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
-// 		  analytics.addDestinationMiddleware("Mixpanel", [addContext]);
-// 		  analytics.addDestinationMiddleware("Webhooks", [addContext]);
-			
+		    newContext["campaign"] = contextObj.campaign || null
+		    newContext["locale"] = navigator.language || null
+		    newContext["pagePath"] = contextObj.page.path || null
+		    newContext["pageReferrer"] = contextObj.page.referrer || null
+		    newContext["pageSearch"] = contextObj.page.search || null
+		    newContext["pageTitle"] = contextObj.page.title || null
+		    newContext["pageUrl"] = contextObj.page.url || null
+		    newContext["userAgent"] = navigator.userAgent || null
+
+		    Object.assign(payload.obj.properties, newContext);
+		    next(payload);
+		  }
+		  analytics.addDestinationMiddleware("Mixpanel", [addContext]);
+		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
+		  
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
 		  }}();
