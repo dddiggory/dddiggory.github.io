@@ -5,24 +5,45 @@
 		<script>
 		  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var t=analytics.methods[e];analytics[t]=analytics.factory(t)}analytics.load=function(e,t){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=t};analytics.SNIPPET_VERSION="4.1.0";
 		  
-		  var addContext = function({payload, next, integration}) {
-		    let contextObj = payload.obj.context;
-		    let newContext = {}
+// 		  var addContext = function({payload, next, integration}) {
+// 		    let contextObj = payload.obj.context;
+// 		    let newContext = {}
 
-		    newContext["campaign"] = contextObj.campaign || null
-		    newContext["locale"] = navigator.language || null
-		    newContext["pagePath"] = contextObj.page.path || null
-		    newContext["pageReferrer"] = contextObj.page.referrer || null
-		    newContext["pageSearch"] = contextObj.page.search || null
-		    newContext["pageTitle"] = contextObj.page.title || null
-		    newContext["pageUrl"] = contextObj.page.url || null
-		    newContext["userAgent"] = navigator.userAgent || null
+// 		    newContext["campaign"] = contextObj.campaign || null
+// 		    newContext["locale"] = navigator.language || null
+// 		    newContext["pagePath"] = contextObj.page.path || null
+// 		    newContext["pageReferrer"] = contextObj.page.referrer || null
+// 		    newContext["pageSearch"] = contextObj.page.search || null
+// 		    newContext["pageTitle"] = contextObj.page.title || null
+// 		    newContext["pageUrl"] = contextObj.page.url || null
+// 		    newContext["userAgent"] = navigator.userAgent || null
 
-		    Object.assign(payload.obj.properties, newContext);
-		    next(payload);
-		  }
-		  analytics.addDestinationMiddleware("Mixpanel", [addContext]);
-		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
+// 		    Object.assign(payload.obj.properties, newContext);
+// 		    next(payload);
+// 		  }
+// 		  analytics.addDestinationMiddleware("Mixpanel", [addContext]);
+// 		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
+
+
+		var overrideCanonicalUrl = function({ payload, next, integrations }) {
+			  var correctedUrl = window.location.href;
+			  payload.obj.properties.url = correctedUrl;
+			  payload.obj.context.page.url = correctedUrl;          
+
+			  var correctedPath = window.location.pathname;
+			  payload.obj.properties.path = correctedPath;
+			  payload.obj.context.page.path = correctedPath;         
+
+			  var correctedTitle = window.document.title;
+			  payload.obj.properties.title = correctedTitle;
+			  payload.obj.context.page.title = correctedTitle;         
+
+			  var correctedReferrer = window.document.referrer;
+			  payload.obj.properties.referrer = correctedReferrer;
+			  payload.obj.context.page.referrer = correctedReferrer;
+			  next(payload);
+			};
+		analytics.addSourceMiddleware(overrideCanonicalUrl);
 		  
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
@@ -35,6 +56,6 @@
 	</head>
     
     <div>
-    Testing
+	    <a href="/sandbox-page2.html">Click to go to Page 2</a>
     </div>
 </html>
