@@ -26,25 +26,30 @@
 // 		  analytics.addDestinationMiddleware("Klaviyo", [addContext]);
 
 
-		var overrideCanonicalUrl = function({ payload, next, integrations }) {
-			  var correctedUrl = window.location.href;
-			  payload.obj.properties.url = correctedUrl;
-			  payload.obj.context.page.url = correctedUrl;          
+// 		var overrideCanonicalUrl = function({ payload, next, integrations }) {
+// 			  var correctedUrl = window.location.href;
+// 			  payload.obj.properties.url = correctedUrl;
+// 			  payload.obj.context.page.url = correctedUrl;          
 
-			  var correctedPath = window.location.pathname;
-			  payload.obj.properties.path = correctedPath;
-			  payload.obj.context.page.path = correctedPath;         
+// 			  var correctedPath = window.location.pathname;
+// 			  payload.obj.properties.path = correctedPath;
+// 			  payload.obj.context.page.path = correctedPath;         
 
-			  var correctedTitle = window.document.title;
-			  payload.obj.properties.title = correctedTitle;
-			  payload.obj.context.page.title = correctedTitle;         
+// 			  var correctedTitle = window.document.title;
+// 			  payload.obj.properties.title = correctedTitle;
+// 			  payload.obj.context.page.title = correctedTitle;         
 
-			  var correctedReferrer = window.document.referrer;
-			  payload.obj.properties.referrer = correctedReferrer;
-			  payload.obj.context.page.referrer = correctedReferrer;
-			  next(payload);
-			};
-		analytics.addSourceMiddleware(overrideCanonicalUrl);
+// 			  var correctedReferrer = window.document.referrer;
+// 			  payload.obj.properties.referrer = correctedReferrer;
+// 			  payload.obj.context.page.referrer = correctedReferrer;
+// 			  next(payload);
+// 			};
+// 		analytics.addSourceMiddleware(overrideCanonicalUrl);
+
+		var addAdobeID = function({ payload, next, integrations }) {
+		  payload.obj.properties["NEW PROP"] = "Source Middleware"
+		  next(payload);
+		};
 		  
 		  analytics.load("UvRi8XfjKk9SfkCSFfCwgQBhy70tyGct");
 		  analytics.page();
