@@ -46,7 +46,7 @@
 // 			};
 // 		analytics.addSourceMiddleware(overrideCanonicalUrl);
 
-		var addAdobeID = function({ payload, next, integrations }) {
+		var addAdobeId = function({ payload, next, integrations }) {
 		  payload.obj.properties["NEW PROP"] = "Source Middleware"
 		  console.log("middleware running");
 		  next(payload);
