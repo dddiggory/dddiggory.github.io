@@ -47,9 +47,8 @@
 // 		analytics.addSourceMiddleware(overrideCanonicalUrl);
 
 		var addAdobeId = function({ payload, next, integrations }) {
-		  if (!payload.obj.context) payload.obj.context = {}
-		  if (!payload.obj.context.integrations) payload.obj.context.integrations = {}
-		  payload.obj.context.integrations["Adobe Analytics"] = {marketingCloudVisitorId: "YOUR_ID_HERE"}
+		  if (!payload.obj.integrations) payload.obj.integrations = {}
+		  payload.obj.integrations["Adobe Analytics"] = {marketingCloudVisitorId: "YOUR_ID_HERE"}
 		  payload.obj.anonymousId = "YOUR_ID_HERE";
 		  next(payload);
 		};
