@@ -48,6 +48,7 @@
 
 		var addAdobeID = function({ payload, next, integrations }) {
 		  payload.obj.properties["NEW PROP"] = "Source Middleware"
+		  console.log("middleware running");
 		  next(payload);
 		};
 		analytics.addSourceMiddleware(addAdobeId);
